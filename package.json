@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/Svitlana-Yudina/my-api/issues"
   },
-  "homepage": "https://github.com/Svitlana-Yudina/my-api#readme",
+  "homepage": "https://benevolent-kringle-db5eab.netlify.app",
   "devDependencies": {
     "@babel/preset-typescript": "^7.18.6",
     "@mate-academy/eslint-config": "0.0.20",
