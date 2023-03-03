@@ -2,13 +2,14 @@ import express from 'express';
 import path from 'path';
 
 const server = express();
+const PORT = process.env.PORT || 8080;
 
-server.use(express.static(path.resolve('public')));
+server.use(express.static(path.resolve('dist')));
 
 server.get('/', (req, res) => {
-  const filePath = path.resolve('public', 'index.html');
+  const filePath = path.resolve('dist', 'index.html');
 
   res.sendFile(filePath);
 });
 
-server.listen(8080);
+server.listen(PORT);
