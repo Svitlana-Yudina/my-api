@@ -2,9 +2,10 @@
   "name": "my-api",
   "version": "1.0.0",
   "description": "rest api",
-  "main": "dist/app.js",
+  "main": ".",
+  "type":"module",
   "scripts": {
-    "start": "nodemon dist/app.js",
+    "start": "tsc && nodemon src/app.js",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "build": "npm run build:types && npm run build:js",
