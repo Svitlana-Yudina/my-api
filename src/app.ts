@@ -7,19 +7,19 @@ const server = express();
 const port = process.env.PORT || 8080;
 
 const { Client } = pkg;
-// const client = new Client({
-//   host: 'localhost',
-//   user: 'postgres', // owner
-//   password: 'test123',
-//   database: 'test_db', // name of DB
-// });
-
 const client = new Client({
-  host: 'test-app-ydno.onrender.com',
+  host: 'localhost',
   user: 'postgres', // owner
   password: 'test123',
   database: 'test_db', // name of DB
 });
+
+// const client = new Client({
+//   host: 'test-app-ydno.onrender.com',
+//   user: 'postgres', // owner
+//   password: 'test123',
+//   database: 'test_db', // name of DB
+// });
 
 await client.connect();
 
