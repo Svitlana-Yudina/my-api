@@ -12,12 +12,12 @@ const client = new Client('postgres://qcewziyl:E4tFnzlQHFhd_aLwuFHfWGuH7fXPZGTk@
 
 await client.connect();
 
-const result = await client.query(`
-select *
-from users
-`);
+// const result = await client.query(`
+// select *
+// from users
+// `);
 
-console.log(result.rows);
+// console.log(result.rows);
 server.use(express.static(path.resolve('public')));
 server.use(express.json());
 
@@ -25,8 +25,30 @@ server.get('/main', (req, res) => {
   res.send('<h1>Main page</h1>');
 });
 
-server.get('/users', (req, res) => {
+server.get('/users', async(req, res) => {
+  const result = await client.query(`
+    select *
+    from users
+  `);
+
   res.send(result.rows);
+});
+
+server.post('/users', async(req, res) => {
+  const {
+    FirstName,
+    BirthDate,
+    email,
+    password,
+  } = req.body;
+  const person = await client.query(`
+    INSERT INTO public.users (
+    "FirstName", "BirthDate", email, password
+    ) VALUES (
+    $1, $2, $3, $4)
+    returning *`, [FirstName, BirthDate, email, password]);
+
+  res.send(person.rows);
 });
 
 server.get('/about', (req, res) => {
