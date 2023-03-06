@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 import express from 'express';
 import path from 'path';
@@ -7,19 +8,7 @@ const server = express();
 const port = process.env.PORT || 8080;
 
 const { Client } = pkg;
-const client = new Client({
-  host: 'localhost',
-  user: 'postgres', // owner
-  password: 'test123',
-  database: 'test_db', // name of DB
-});
-
-// const client = new Client({
-//   host: 'test-app-ydno.onrender.com',
-//   user: 'postgres', // owner
-//   password: 'test123',
-//   database: 'test_db', // name of DB
-// });
+const client = new Client('postgres://qcewziyl:E4tFnzlQHFhd_aLwuFHfWGuH7fXPZGTk@trumpet.db.elephantsql.com/qcewziyl');
 
 await client.connect();
 
@@ -28,9 +17,9 @@ select *
 from users
 `);
 
-// console.log(result.rows);
-
+console.log(result.rows);
 server.use(express.static(path.resolve('public')));
+server.use(express.json());
 
 server.get('/main', (req, res) => {
   res.send('<h1>Main page</h1>');
